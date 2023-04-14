@@ -1,5 +1,7 @@
 package de.oliver.fancylib;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
 
@@ -56,5 +58,9 @@ public class MessageHelper {
 
     public static String getErrorColor() {
         return errorColor;
+    }
+
+    public static Component removeDecoration(Component component, TextDecoration decoration){
+        return  component.decoration(decoration, TextDecoration.State.FALSE);
     }
 }
