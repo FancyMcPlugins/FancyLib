@@ -1,7 +1,9 @@
 plugins {
     `java-library`
     id("io.papermc.paperweight.userdev") version "1.5.4"
-    id("maven-publish")
+    apply {
+        id("maven-publish")
+    }
 }
 
 group = "de.oliver"
