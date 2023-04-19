@@ -2,4 +2,4 @@ jdk:
   - openjdk17
 
 install:
-  - "bash gradlew reobfJar publishToMavenLocal"
+  - "bash gradlew build publishToMavenLocal"
