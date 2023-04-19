@@ -1,6 +1,5 @@
 plugins {
     `java-library`
-//    id("io.papermc.paperweight.userdev") version "1.5.4"
     id("maven-publish")
 }
 
@@ -32,11 +31,6 @@ tasks {
             }
         }
     }
-
-    // Configure reobfJar to run when invoking the build task
-//    assemble {
-//        dependsOn(reobfJar)
-//    }
 
     compileJava {
         options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
