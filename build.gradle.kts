@@ -18,6 +18,10 @@ repositories{
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT")
+
+    // database drivers
+    implementation("org.xerial:sqlite-jdbc:3.41.2.1")
+    implementation("mysql:mysql-connector-java:8.0.33")
 }
 
 tasks {
