@@ -25,6 +25,9 @@ public interface InventoryItemClick {
 
     String getId();
     void onClick(InventoryClickEvent event, Player player);
+    default void register(){
+        ItemClickRegistry.registerInventoryItemClick(this);
+    }
 
     static boolean hasKeys(ItemStack item, List<NamespacedKey> keys){
         PersistentDataContainer data = item.getItemMeta().getPersistentDataContainer();
