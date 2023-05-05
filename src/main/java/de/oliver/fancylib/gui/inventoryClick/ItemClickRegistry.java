@@ -12,7 +12,7 @@ public class ItemClickRegistry {
         return inventoryItemClickMap.getOrDefault(id, InventoryItemClick.EMPTY);
     }
 
-    private static void registerInventoryItemClick(InventoryItemClick inventoryItemClick){
+    public static void registerInventoryItemClick(InventoryItemClick inventoryItemClick){
         inventoryItemClickMap.put(inventoryItemClick.getId(), inventoryItemClick);
     }
 
