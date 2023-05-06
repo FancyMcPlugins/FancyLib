@@ -1,6 +1,8 @@
 package de.oliver.fancylib;
 
 import de.oliver.fancylib.gui.inventoryClick.InventoryClickListener;
+import de.oliver.fancylib.gui.inventoryClick.impl.CancelInventoryItemClick;
+import de.oliver.fancylib.gui.inventoryClick.impl.ChangePageInventoryItemClick;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -14,6 +16,9 @@ public class FancyLib {
     public static void setPlugin(Plugin plugin) {
         if(FancyLib.plugin == null){
             FancyLib.plugin = plugin;
+
+            CancelInventoryItemClick.INSTANCE.register();
+            ChangePageInventoryItemClick.INSTANCE.register();
             Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), plugin);
         }
     }
