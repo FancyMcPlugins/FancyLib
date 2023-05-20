@@ -33,10 +33,10 @@ public interface FancyScheduler {
     @NotNull FancyScheduler runTaskLater(Location location, long delay, Runnable task);
 
     /**
-     * Run the task asynchronously after a specified number of ticks.
+     * Run the task asynchronously after a specified number of seconds.
      *
      * @param task task...
-     * @param delay The number of ticks to wait.
+     * @param delay The number of seconds to wait.
      * @return The created {@link FancyScheduler}
      */
     @NotNull FancyScheduler runTaskLaterAsynchronously(long delay, Runnable task);
@@ -56,8 +56,8 @@ public interface FancyScheduler {
      * Run the task repeatedly on a timer asynchronously.
      *
      * @param task task...
-     * @param delay  The delay before the task is first run (in ticks).
-     * @param period The ticks elapsed before the task is run again.
+     * @param delay  The delay before the task is first run (in seconds).
+     * @param period The seconds elapsed before the task is run again.
      * @return The created {@link FancyScheduler}
      */
     @NotNull FancyScheduler runTaskTimerAsynchronously(long delay, long period, Runnable task);

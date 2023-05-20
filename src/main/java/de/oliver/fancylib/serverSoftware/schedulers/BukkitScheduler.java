@@ -35,7 +35,7 @@ public class BukkitScheduler implements FancyScheduler {
 
     @Override
     public @NotNull FancyScheduler runTaskLaterAsynchronously(long delay, Runnable task) {
-        bukkitTask = Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, task, delay);
+        bukkitTask = Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, task, 20L*delay);
         return this;
     }
 
@@ -47,7 +47,7 @@ public class BukkitScheduler implements FancyScheduler {
 
     @Override
     public @NotNull FancyScheduler runTaskTimerAsynchronously(long delay, long period, Runnable task) {
-        bukkitTask = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, task, delay, period);
+        bukkitTask = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, task, 20L*delay, 20L*period);
         return this;
     }
 
