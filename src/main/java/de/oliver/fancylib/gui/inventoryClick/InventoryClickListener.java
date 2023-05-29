@@ -17,7 +17,7 @@ public class InventoryClickListener implements Listener {
 
             if(item.getItemMeta().getPersistentDataContainer().has(InventoryItemClick.ON_CLICK_KEY)){
                 String id = item.getItemMeta().getPersistentDataContainer().get(InventoryItemClick.ON_CLICK_KEY, PersistentDataType.STRING);
-                ItemClickRegistry.getInventoryItemClick(id).onClick(event, (Player) event.getWhoClicked());
+                InventoryClickRegistry.getInventoryItemClick(id).onClick(event, (Player) event.getWhoClicked());
             }
 
         }catch (NullPointerException ignore){ }

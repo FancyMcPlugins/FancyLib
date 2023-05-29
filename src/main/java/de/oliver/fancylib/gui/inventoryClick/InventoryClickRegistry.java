@@ -4,7 +4,7 @@ package de.oliver.fancylib.gui.inventoryClick;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ItemClickRegistry {
+public class InventoryClickRegistry {
 
     private static final Map<String, InventoryItemClick> inventoryItemClickMap = new HashMap<>();
 
