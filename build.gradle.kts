@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "1.0.1"
+version = "1.0.2"
 description = "Library for all Fancy plugins"
 
 java {
@@ -17,7 +17,7 @@ repositories{
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.19.4-R0.1-SNAPSHOT")
+    compileOnly("dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT")
 
     // database drivers
     compileOnly("org.xerial:sqlite-jdbc:3.41.2.1")
