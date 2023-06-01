@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "1.0.0"
+version = "1.0.1"
 description = "Library for all Fancy plugins"
 
 java {
@@ -26,6 +26,27 @@ dependencies {
 
 tasks {
     publishing {
+        repositories {
+            maven {
+                name = "fancypluginsReleases"
+                url = uri("https://repo.fancyplugins.de/releases")
+                credentials(PasswordCredentials::class)
+                authentication {
+                    isAllowInsecureProtocol = true
+                    create<BasicAuthentication>("basic")
+                }
+            }
+
+            maven {
+                name = "fancypluginsSnapshots"
+                url = uri("https://repo.fancyplugins.de/snapshots")
+                credentials(PasswordCredentials::class)
+                authentication {
+                    isAllowInsecureProtocol = true
+                    create<BasicAuthentication>("basic")
+                }
+            }
+        }
         publications {
             create<MavenPublication>("maven") {
                 groupId = project.group.toString()
