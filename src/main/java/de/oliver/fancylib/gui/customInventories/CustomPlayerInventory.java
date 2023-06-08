@@ -31,6 +31,10 @@ public abstract class CustomPlayerInventory implements InventoryHolder {
         return inventory;
     }
 
+    public void open(){
+        player.openInventory(inventory);
+    }
+
     public static ItemStack getPlaceholder(){
         ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         item.editMeta(itemMeta -> {
