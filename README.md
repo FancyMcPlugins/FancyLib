@@ -2,10 +2,10 @@
 
 ```gradle
 repositories {
-    maven { url = uri("https://jitpack.io") }
+    maven("https://repo.fancyplugins.de/releases/")
 }
 
 dependencies {
-    implementation("com.github.FancyMcPlugins:FancyLib:main-SNAPSHOT")
+    implementation("de.oliver:FancyLib:<version>")
 }
 ```
