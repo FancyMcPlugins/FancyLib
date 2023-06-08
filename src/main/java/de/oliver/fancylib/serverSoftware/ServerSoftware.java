@@ -2,6 +2,7 @@ package de.oliver.fancylib.serverSoftware;
 
 import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;
 import de.oliver.fancylib.serverSoftware.schedulers.BukkitScheduler;
+import de.oliver.fancylib.serverSoftware.schedulers.FoliaScheduler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ServerSoftware {
@@ -35,7 +36,7 @@ public class ServerSoftware {
 
     public static FancyScheduler getCorrectScheduler(JavaPlugin plugin) {
         if(isFolia()){
-            // return folia scheduler
+            return new FoliaScheduler(plugin);
         }
 
         return new BukkitScheduler(plugin);

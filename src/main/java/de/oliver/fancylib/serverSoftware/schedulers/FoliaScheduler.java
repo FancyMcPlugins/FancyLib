@@ -1,4 +1,4 @@
-package de.oliver.fancylib.serverSoftware;
+package de.oliver.fancylib.serverSoftware.schedulers;
 
 import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
