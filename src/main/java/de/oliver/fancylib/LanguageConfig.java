@@ -30,20 +30,17 @@ public class LanguageConfig {
         defaultLang.put(key, message);
     }
 
+    /**
+     * @param placeholders format: placeholder1, replacement1, placeholder2, replacement2 ...
+     */
     public String get(String key, String... placeholders){
         String message = lang.getOrDefault(key, "Error: message not found");
 
-        Matcher matcher = PLACEHOLDER_PATTERN.matcher(message);
-        int i = 0;
-        while(matcher.find()){
-            String placeholder = matcher.group();
-            message = message.replace(placeholder, placeholders[i]);
+        for (int i = 0; i < placeholders.length; i+=2) {
+            String placeholder = placeholders[i];
+            String replacement = placeholders[i+1];
 
-            i++;
-
-            if(i >= placeholders.length){
-                break;
-            }
+            message = message.replace("{" + placeholder + "}", replacement);
         }
 
         return message;
