@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.TimeUnit;
 
 public class FoliaScheduler implements FancyScheduler {
+    private static final long NANOSECONDS_PER_TICK = 2500000L;
 
     private final JavaPlugin plugin;
     private ScheduledTask scheduledTask;
@@ -45,7 +46,7 @@ public class FoliaScheduler implements FancyScheduler {
 
     @Override
     public @NotNull FancyScheduler runTaskLaterAsynchronously(long delay, Runnable task) {
-        scheduledTask = plugin.getServer().getAsyncScheduler().runDelayed(plugin, scheduledTask1 -> task.run(), delay, TimeUnit.SECONDS);
+        scheduledTask = plugin.getServer().getAsyncScheduler().runDelayed(plugin, scheduledTask1 -> task.run(), delay * NANOSECONDS_PER_TICK, TimeUnit.NANOSECONDS);
         return this;
     }
 
@@ -57,7 +58,7 @@ public class FoliaScheduler implements FancyScheduler {
 
     @Override
     public @NotNull FancyScheduler runTaskTimerAsynchronously(long delay, long period, Runnable task) {
-        scheduledTask = plugin.getServer().getAsyncScheduler().runAtFixedRate(plugin, scheduledTask1 -> task.run(), delay, period, TimeUnit.SECONDS);
+        scheduledTask = plugin.getServer().getAsyncScheduler().runAtFixedRate(plugin, scheduledTask1 -> task.run(), delay * NANOSECONDS_PER_TICK, period * NANOSECONDS_PER_TICK, TimeUnit.NANOSECONDS);
         return this;
     }
 
