@@ -1,7 +1,7 @@
 package de.oliver.fancylib.serverSoftware;
 
-import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;
 import de.oliver.fancylib.serverSoftware.schedulers.BukkitScheduler;
+import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;
 import de.oliver.fancylib.serverSoftware.schedulers.FoliaScheduler;
 import org.bukkit.plugin.java.JavaPlugin;
 

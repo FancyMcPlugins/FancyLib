@@ -1,6 +1,5 @@
 package de.oliver.fancylib.serverSoftware.schedulers;
 
-import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
