@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.TimeUnit;
 
 public class FoliaScheduler implements FancyScheduler {
-    private static final long NANOSECONDS_PER_TICK = 2500000L;
+    private static final long NANOSECONDS_PER_TICK = 50000000L;
 
     private final JavaPlugin plugin;
     private ScheduledTask scheduledTask;
