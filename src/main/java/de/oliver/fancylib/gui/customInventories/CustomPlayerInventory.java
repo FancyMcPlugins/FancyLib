@@ -21,6 +21,16 @@ public abstract class CustomPlayerInventory implements InventoryHolder {
         this.inventory = Bukkit.createInventory(this, amountRows * 9, title);
     }
 
+    public static ItemStack getPlaceholder() {
+        ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+        item.editMeta(itemMeta -> {
+            itemMeta.displayName(Component.empty());
+            itemMeta.getPersistentDataContainer().set(InventoryItemClick.ON_CLICK_KEY, PersistentDataType.STRING, "cancelClick");
+        });
+
+        return item;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -31,17 +41,7 @@ public abstract class CustomPlayerInventory implements InventoryHolder {
         return inventory;
     }
 
-    public void open(){
+    public void open() {
         player.openInventory(inventory);
-    }
-
-    public static ItemStack getPlaceholder(){
-        ItemStack item = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
-        item.editMeta(itemMeta -> {
-            itemMeta.displayName(Component.empty());
-            itemMeta.getPersistentDataContainer().set(InventoryItemClick.ON_CLICK_KEY, PersistentDataType.STRING, "cancelClick");
-        });
-
-        return item;
     }
 }

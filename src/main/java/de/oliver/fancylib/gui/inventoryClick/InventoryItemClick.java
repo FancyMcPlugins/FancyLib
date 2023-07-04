@@ -20,24 +20,27 @@ public interface InventoryItemClick {
         }
 
         @Override
-        public void onClick(InventoryClickEvent event, Player player) { }
+        public void onClick(InventoryClickEvent event, Player player) {
+        }
     };
 
-    String getId();
-    void onClick(InventoryClickEvent event, Player player);
-    default void register(){
-        InventoryClickRegistry.registerInventoryItemClick(this);
-    }
-
-    static boolean hasKeys(ItemStack item, List<NamespacedKey> keys){
+    static boolean hasKeys(ItemStack item, List<NamespacedKey> keys) {
         PersistentDataContainer data = item.getItemMeta().getPersistentDataContainer();
         for (NamespacedKey key : keys) {
-            if(!data.has(key)){
+            if (!data.has(key)) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    String getId();
+
+    void onClick(InventoryClickEvent event, Player player);
+
+    default void register() {
+        InventoryClickRegistry.registerInventoryItemClick(this);
     }
 
 }

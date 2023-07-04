@@ -8,11 +8,11 @@ public class InventoryClickRegistry {
 
     private static final Map<String, InventoryItemClick> inventoryItemClickMap = new HashMap<>();
 
-    public static InventoryItemClick getInventoryItemClick(String id){
+    public static InventoryItemClick getInventoryItemClick(String id) {
         return inventoryItemClickMap.getOrDefault(id, InventoryItemClick.EMPTY);
     }
 
-    public static void registerInventoryItemClick(InventoryItemClick inventoryItemClick){
+    public static void registerInventoryItemClick(InventoryItemClick inventoryItemClick) {
         inventoryItemClickMap.put(inventoryItemClick.getId(), inventoryItemClick);
     }
 

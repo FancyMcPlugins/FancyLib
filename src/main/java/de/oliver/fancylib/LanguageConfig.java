@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LanguageConfig {
@@ -15,9 +14,9 @@ public class LanguageConfig {
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("\\{([^}]+)\\}");
 
     private final Plugin plugin;
-    private File configFile;
     private final Map<String, String> lang;
     private final Map<String, String> defaultLang;
+    private File configFile;
 
     public LanguageConfig(Plugin plugin) {
         this.plugin = plugin;
@@ -26,19 +25,19 @@ public class LanguageConfig {
         this.defaultLang = new HashMap<>();
     }
 
-    public void addDefaultLang(String key, String message){
+    public void addDefaultLang(String key, String message) {
         defaultLang.put(key, message);
     }
 
     /**
      * @param placeholders format: placeholder1, replacement1, placeholder2, replacement2 ...
      */
-    public String get(String key, String... placeholders){
+    public String get(String key, String... placeholders) {
         String message = lang.getOrDefault(key, "Error: message not found");
 
-        for (int i = 0; i < placeholders.length; i+=2) {
+        for (int i = 0; i < placeholders.length; i += 2) {
             String placeholder = placeholders[i];
-            String replacement = placeholders[i+1];
+            String replacement = placeholders[i + 1];
 
             message = message.replace("{" + placeholder + "}", replacement);
         }
@@ -46,10 +45,10 @@ public class LanguageConfig {
         return message;
     }
 
-    public void load(){
+    public void load() {
         lang.clear();
 
-        if(!configFile.exists()){
+        if (!configFile.exists()) {
             try {
                 configFile.createNewFile();
             } catch (IOException e) {
@@ -60,7 +59,7 @@ public class LanguageConfig {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
         for (Map.Entry<String, String> entry : defaultLang.entrySet()) {
-            if(!config.isSet("messages." + entry.getKey())){
+            if (!config.isSet("messages." + entry.getKey())) {
                 config.set("messages." + entry.getKey(), entry.getValue());
             }
         }

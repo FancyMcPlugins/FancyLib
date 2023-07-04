@@ -19,7 +19,8 @@ public class ChangePageInventoryItemClick implements InventoryItemClick {
             PageInventory.PAGE_KEY
     );
 
-    private ChangePageInventoryItemClick() { }
+    private ChangePageInventoryItemClick() {
+    }
 
     @Override
     public String getId() {
@@ -30,12 +31,12 @@ public class ChangePageInventoryItemClick implements InventoryItemClick {
     public void onClick(InventoryClickEvent event, Player player) {
         ItemStack item = event.getCurrentItem();
 
-        if(item != null && InventoryItemClick.hasKeys(item, REQUIRED_KEYS)){
+        if (item != null && InventoryItemClick.hasKeys(item, REQUIRED_KEYS)) {
             event.setCancelled(true);
 
             int page = item.getItemMeta().getPersistentDataContainer().get(PageInventory.PAGE_KEY, PersistentDataType.INTEGER);
 
-            if(event.getInventory().getHolder() == null || !(event.getInventory().getHolder() instanceof PageInventory pageInventory)){
+            if (event.getInventory().getHolder() == null || !(event.getInventory().getHolder() instanceof PageInventory pageInventory)) {
                 return;
             }
 

@@ -21,8 +21,12 @@ public class FancyLib {
     private static JavaPlugin plugin;
     private static FancyScheduler scheduler;
 
+    public static Plugin getPlugin() {
+        return plugin;
+    }
+
     public static void setPlugin(JavaPlugin plugin) {
-        if(FancyLib.plugin == null){
+        if (FancyLib.plugin == null) {
             FancyLib.plugin = plugin;
 
             scheduler = ServerSoftware.isFolia()
@@ -35,10 +39,6 @@ public class FancyLib {
             Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), plugin);
             Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), plugin);
         }
-    }
-
-    public static Plugin getPlugin() {
-        return plugin;
     }
 
     @ApiStatus.Internal

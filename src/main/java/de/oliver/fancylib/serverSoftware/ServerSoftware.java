@@ -36,7 +36,7 @@ public class ServerSoftware {
     }
 
     public static FancyScheduler getCorrectScheduler(JavaPlugin plugin) {
-        if(isFolia()){
+        if (isFolia()) {
             return new FoliaScheduler(plugin);
         }
 

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 
-public class MySqlDatabase implements Database{
+public class MySqlDatabase implements Database {
 
     protected final String host;
     protected final String port;
@@ -24,15 +24,15 @@ public class MySqlDatabase implements Database{
 
     @Override
     public boolean connect() {
-        try{
-            if(isConnected()){
+        try {
+            if (isConnected()) {
                 return true;
             }
 
 //            Class.forName("com.mysql/.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database, username, password);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -40,15 +40,15 @@ public class MySqlDatabase implements Database{
 
     @Override
     public boolean close() {
-        try{
-            if(!isConnected()){
+        try {
+            if (!isConnected()) {
                 return true;
             }
 
-          connection.close();
-          connection = null;
-          return true;
-        } catch (Exception e){
+            connection.close();
+            connection = null;
+            return true;
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -66,10 +66,10 @@ public class MySqlDatabase implements Database{
 
     @Override
     public boolean executeNonQuery(String sql) {
-        try{
+        try {
             connection.createStatement().execute(sql);
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -77,10 +77,10 @@ public class MySqlDatabase implements Database{
 
     @Override
     public ResultSet executeQuery(String query) {
-        try{
+        try {
             ResultSet resultSet = connection.createStatement().executeQuery(query);
             return resultSet;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

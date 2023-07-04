@@ -15,33 +15,33 @@ public class MessageHelper {
     private static String warningColor = "#e3ca66";
     private static String errorColor = "#e36666";
 
-    public static @NotNull Component info(@Nullable CommandSender receiver, @NotNull String message){
+    public static @NotNull Component info(@Nullable CommandSender receiver, @NotNull String message) {
         Component msg = MiniMessage.miniMessage().deserialize("<color:" + primaryColor + ">" + message);
-        if(receiver != null){
+        if (receiver != null) {
             receiver.sendMessage(msg);
         }
         return msg;
     }
 
-    public static @NotNull Component success(@Nullable CommandSender receiver, @NotNull String message){
-        Component msg = MiniMessage.miniMessage().deserialize("<color:" + successColor + ">"  + message);
-        if(receiver != null){
+    public static @NotNull Component success(@Nullable CommandSender receiver, @NotNull String message) {
+        Component msg = MiniMessage.miniMessage().deserialize("<color:" + successColor + ">" + message);
+        if (receiver != null) {
             receiver.sendMessage(msg);
         }
         return msg;
     }
 
-    public static @NotNull Component warning(@Nullable CommandSender receiver, @NotNull String message){
+    public static @NotNull Component warning(@Nullable CommandSender receiver, @NotNull String message) {
         Component msg = MiniMessage.miniMessage().deserialize("<color:" + warningColor + ">" + message);
-        if(receiver != null){
+        if (receiver != null) {
             receiver.sendMessage(msg);
         }
         return msg;
     }
 
-    public static @NotNull Component error(@Nullable CommandSender receiver, @NotNull String message){
+    public static @NotNull Component error(@Nullable CommandSender receiver, @NotNull String message) {
         Component msg = MiniMessage.miniMessage().deserialize("<color:" + errorColor + ">" + message);
-        if(receiver != null){
+        if (receiver != null) {
             receiver.sendMessage(msg);
         }
         return msg;
@@ -71,7 +71,7 @@ public class MessageHelper {
         return errorColor;
     }
 
-    public static Component removeDecoration(Component component, TextDecoration decoration){
-        return  component.decoration(decoration, TextDecoration.State.FALSE);
+    public static Component removeDecoration(Component component, TextDecoration decoration) {
+        return component.decoration(decoration, TextDecoration.State.FALSE);
     }
 }

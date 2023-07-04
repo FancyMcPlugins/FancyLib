@@ -11,7 +11,7 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
-repositories{
+repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
 }

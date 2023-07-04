@@ -10,7 +10,7 @@ public class RandomUtils {
     }
 
     public static double randomInRange(double min, double max) {
-        return (ThreadLocalRandom.current().nextDouble() * (max - min))+min;
+        return (ThreadLocalRandom.current().nextDouble() * (max - min)) + min;
     }
 
 }

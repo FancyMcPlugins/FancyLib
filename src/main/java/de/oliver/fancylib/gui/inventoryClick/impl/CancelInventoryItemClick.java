@@ -8,7 +8,8 @@ public class CancelInventoryItemClick implements InventoryItemClick {
 
     public static final CancelInventoryItemClick INSTANCE = new CancelInventoryItemClick();
 
-    private CancelInventoryItemClick(){ }
+    private CancelInventoryItemClick() {
+    }
 
     @Override
     public String getId() {

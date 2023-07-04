@@ -7,11 +7,11 @@ public class ItemClickRegistry {
 
     private static final Map<String, ItemClick> itemClickMap = new HashMap<>();
 
-    public static ItemClick getItemClick(String id){
+    public static ItemClick getItemClick(String id) {
         return itemClickMap.getOrDefault(id, ItemClick.EMPTY);
     }
 
-    public static void registerItemClick(ItemClick itemClick){
+    public static void registerItemClick(ItemClick itemClick) {
         itemClickMap.put(itemClick.getId(), itemClick);
     }
 

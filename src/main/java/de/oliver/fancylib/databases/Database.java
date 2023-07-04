@@ -7,12 +7,14 @@ public interface Database {
 
     /**
      * Connects to the database
+     *
      * @return true if success, false if failed
      */
     boolean connect();
 
     /**
      * Closes the database connection
+     *
      * @return true if success, false if failed
      */
     boolean close();
@@ -29,12 +31,14 @@ public interface Database {
 
     /**
      * Executes a statement on the database
+     *
      * @return true if success, false if failed
      */
     boolean executeNonQuery(String sql);
 
     /**
      * Executes a query on the database
+     *
      * @return the result or null if failed
      */
     ResultSet executeQuery(String query);

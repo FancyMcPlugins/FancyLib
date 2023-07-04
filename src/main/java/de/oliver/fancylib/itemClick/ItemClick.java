@@ -15,13 +15,15 @@ public interface ItemClick {
         }
 
         @Override
-        public void onClick(PlayerInteractEvent event, Player player) { }
+        public void onClick(PlayerInteractEvent event, Player player) {
+        }
     };
 
     String getId();
+
     void onClick(PlayerInteractEvent event, Player player);
 
-    default void register(){
+    default void register() {
         ItemClickRegistry.registerItemClick(this);
     }
 

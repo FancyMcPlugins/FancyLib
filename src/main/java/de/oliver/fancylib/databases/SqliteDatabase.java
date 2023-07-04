@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import java.io.File;
 import java.sql.DriverManager;
 
-public class SqliteDatabase extends MySqlDatabase{
+public class SqliteDatabase extends MySqlDatabase {
 
     protected final String path;
     protected File file;
@@ -18,13 +18,13 @@ public class SqliteDatabase extends MySqlDatabase{
 
     @Override
     public boolean connect() {
-        try{
-            if(isConnected()){
+        try {
+            if (isConnected()) {
                 return true;
             }
 
-            if(!file.exists()){
-                if(!file.createNewFile()){
+            if (!file.exists()) {
+                if (!file.createNewFile()) {
                     Bukkit.getLogger().warning("Could not create database file.");
                     return false;
                 }
@@ -33,7 +33,7 @@ public class SqliteDatabase extends MySqlDatabase{
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:" + file.getPath());
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

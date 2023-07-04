@@ -19,10 +19,17 @@ public class VersionFetcher {
         this.downloadUrl = downloadUrl;
     }
 
+    private static String getDataFromUrl(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        try (java.util.Scanner scanner = new java.util.Scanner(url.openStream(), "UTF-8").useDelimiter("\\A")) {
+            return scanner.hasNext() ? scanner.next() : "";
+        }
+    }
+
     /**
      * @return the newest version
      */
-    private ComparableVersion fetch(String url){
+    private ComparableVersion fetch(String url) {
         String jsonString = null;
         try {
             jsonString = getDataFromUrl(url);
@@ -52,19 +59,12 @@ public class VersionFetcher {
         return downloadUrl;
     }
 
-    public ComparableVersion getNewestVersion(){
-        if(newestVersion != null) return newestVersion;
+    public ComparableVersion getNewestVersion() {
+        if (newestVersion != null) return newestVersion;
 
         newestVersion = fetch(apiUrl);
-        if(newestVersion != null) return newestVersion;
+        if (newestVersion != null) return newestVersion;
 
         return null;
-    }
-
-    private static String getDataFromUrl(String urlString) throws IOException {
-        URL url = new URL(urlString);
-        try (java.util.Scanner scanner = new java.util.Scanner(url.openStream(), "UTF-8").useDelimiter("\\A")) {
-            return scanner.hasNext() ? scanner.next() : "";
-        }
     }
 }
