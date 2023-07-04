@@ -3,17 +3,18 @@ package de.oliver.fancylib.serverSoftware;
 import de.oliver.fancylib.serverSoftware.schedulers.BukkitScheduler;
 import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;
 import de.oliver.fancylib.serverSoftware.schedulers.FoliaScheduler;
+import io.papermc.paper.plugin.configuration.PluginMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class ServerSoftware {
 
     public static boolean isFolia() {
-        try {
-            Class.forName("io.papermc.paper.threadedregions.scheduler.RegionScheduler");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return Arrays.stream(PluginMeta.class.getDeclaredMethods())
+                .map(Method::getName)
+                .anyMatch(s -> s.equals("isFoliaSupported"));
     }
 
     public static boolean isPaper() {
