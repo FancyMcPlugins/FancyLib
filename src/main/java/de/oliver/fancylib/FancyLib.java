@@ -16,7 +16,7 @@ import org.jetbrains.annotations.ApiStatus;
 
 public class FancyLib {
 
-    public static final ComparableVersion VERSION = new ComparableVersion("1.0.0");
+    public static final ComparableVersion VERSION = new ComparableVersion("1.0.3");
 
     private static JavaPlugin plugin;
     private static FancyScheduler scheduler;
