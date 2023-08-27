@@ -6,7 +6,6 @@ import org.bukkit.plugin.Plugin;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class FeatureFlagConfig {
@@ -33,6 +32,8 @@ public class FeatureFlagConfig {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
 
         for (FeatureFlag featureFlag : featureFlags) {
+            config.setInlineComments("feature-flags." + featureFlag.getName(), List.of(featureFlag.getDescription()));
+
             if(config.isSet("feature-flags." + featureFlag.getName())){
                continue;
             }
@@ -44,7 +45,7 @@ public class FeatureFlagConfig {
             boolean enabled = config.getBoolean("feature-flags." + flagName, false);
             FeatureFlag flag = getFeatureFlag(flagName);
             if(flag == null){
-                flag = new FeatureFlag(flagName, false);
+                flag = new FeatureFlag(flagName, "", false);
                 featureFlags.add(flag);
             }
 
