@@ -35,7 +35,7 @@ public class FileUtils {
         return null;
     }
 
-    private void saveFile(Plugin plugin, String name) {
+    public void saveFile(Plugin plugin, String name) {
         URL url = getClass().getClassLoader().getResource(name);
         if (url == null) {
             return;
