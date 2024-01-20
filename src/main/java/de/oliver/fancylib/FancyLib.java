@@ -30,11 +30,6 @@ public class FancyLib {
         if (FancyLib.plugin == null) {
             FancyLib.plugin = plugin;
 
-        if(plugin.getName().equals("FancyNpcs")) {
-            SentryLoader.initSentry("https://32095848f66ff733b05ef0baf5fb6649@o4506593995849728.ingest.sentry.io/4506594072723456", plugin);
-        } else if(plugin.getName().equals("FancyHolograms")) {
-            SentryLoader.initSentry("https://5c268150853515e1a40ed64985f5564e@o4506593995849728.ingest.sentry.io/4506602656890880", plugin);
-        }
 
             scheduler = ServerSoftware.isFolia()
                     ? new FoliaScheduler(plugin)
