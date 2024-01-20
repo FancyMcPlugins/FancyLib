@@ -1,8 +1,10 @@
 # How to use
 
-```gradle
+```kotlin
 repositories {
     maven("https://repo.fancyplugins.de/releases/")
+    // or
+    maven("https://repo.fancyplugins.de/snapshots/")
 }
 
 dependencies {
