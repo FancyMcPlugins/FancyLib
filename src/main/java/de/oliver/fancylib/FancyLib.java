@@ -4,6 +4,7 @@ import de.oliver.fancylib.gui.inventoryClick.InventoryClickListener;
 import de.oliver.fancylib.gui.inventoryClick.impl.CancelInventoryItemClick;
 import de.oliver.fancylib.gui.inventoryClick.impl.ChangePageInventoryItemClick;
 import de.oliver.fancylib.itemClick.PlayerInteractListener;
+import de.oliver.fancylib.sentry.SentryLoader;
 import de.oliver.fancylib.serverSoftware.ServerSoftware;
 import de.oliver.fancylib.serverSoftware.schedulers.BukkitScheduler;
 import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;
@@ -28,6 +29,12 @@ public class FancyLib {
     public static void setPlugin(JavaPlugin plugin) {
         if (FancyLib.plugin == null) {
             FancyLib.plugin = plugin;
+
+        if(plugin.getName().equals("FancyNpcs")) {
+            SentryLoader.initSentry("https://32095848f66ff733b05ef0baf5fb6649@o4506593995849728.ingest.sentry.io/4506594072723456", plugin);
+        } else if(plugin.getName().equals("FancyHolograms")) {
+            SentryLoader.initSentry("https://5c268150853515e1a40ed64985f5564e@o4506593995849728.ingest.sentry.io/4506602656890880", plugin);
+        }
 
             scheduler = ServerSoftware.isFolia()
                     ? new FoliaScheduler(plugin)
