@@ -57,6 +57,7 @@ public class LanguageConfig {
         }
 
         YamlConfiguration config = YamlConfiguration.loadConfiguration(configFile);
+        config.options().width(1000);
 
         for (Map.Entry<String, String> entry : defaultLang.entrySet()) {
             if (!config.isSet("messages." + entry.getKey())) {

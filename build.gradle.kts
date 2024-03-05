@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "1.0.9"
+version = "1.0.10"
 description = "Library for all Fancy plugins"
 
 sentry {
