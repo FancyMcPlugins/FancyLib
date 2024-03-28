@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+@Deprecated
 public class LanguageConfig {
 
     private static final Pattern PLACEHOLDER_PATTERN = Pattern.compile("\\{([^}]+)\\}");
@@ -18,6 +19,7 @@ public class LanguageConfig {
     private final Map<String, String> defaultLang;
     private File configFile;
 
+    @Deprecated
     public LanguageConfig(Plugin plugin) {
         this.plugin = plugin;
         this.configFile = new File("plugins/" + plugin.getName() + "/lang.yml");
@@ -25,6 +27,7 @@ public class LanguageConfig {
         this.defaultLang = new HashMap<>();
     }
 
+    @Deprecated
     public void addDefaultLang(String key, String message) {
         defaultLang.put(key, message);
     }
@@ -32,6 +35,7 @@ public class LanguageConfig {
     /**
      * @param placeholders format: placeholder1, replacement1, placeholder2, replacement2 ...
      */
+    @Deprecated
     public String get(String key, String... placeholders) {
         String message = lang.getOrDefault(key, "Error: message not found");
 
@@ -45,6 +49,7 @@ public class LanguageConfig {
         return message;
     }
 
+    @Deprecated
     public void load() {
         lang.clear();
 

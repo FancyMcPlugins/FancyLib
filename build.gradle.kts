@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "1.0.10"
+version = "1.0.11"
 description = "Library for all Fancy plugins"
 
 sentry {
@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("dev.folia:folia-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("dev.folia:folia-api:1.20.4-R0.1-SNAPSHOT")
 
     // database drivers
     compileOnly("org.xerial:sqlite-jdbc:3.42.0.1")
