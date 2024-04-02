@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "1.0.11"
+version = "1.0.12"
 description = "Library for all Fancy plugins"
 
 sentry {
@@ -19,6 +19,8 @@ sentry {
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    withSourcesJar()
+    withJavadocJar()
 }
 
 repositories {
