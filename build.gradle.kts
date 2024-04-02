@@ -2,25 +2,14 @@ plugins {
     id("java")
     id("maven-publish")
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.sentry.jvm.gradle") version "4.2.0"
 }
 
 group = "de.oliver"
-version = "1.0.12"
+version = "1.0.13"
 description = "Library for all Fancy plugins"
-
-sentry {
-    includeSourceContext.set(true)
-    org.set("fancyplugins")
-    projectName.set("fancynpcs")
-    authToken.set(findProperty("sentryToken").toString())
-    autoInstallation.enabled.set(true)
-}
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-    withSourcesJar()
-    withJavadocJar()
 }
 
 repositories {
@@ -76,6 +65,12 @@ tasks {
         // See https://openjdk.java.net/jeps/247 for more information.
         options.release.set(17)
     }
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+
     javadoc {
         options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything
     }

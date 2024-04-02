@@ -4,7 +4,6 @@ import de.oliver.fancylib.gui.inventoryClick.InventoryClickListener;
 import de.oliver.fancylib.gui.inventoryClick.impl.CancelInventoryItemClick;
 import de.oliver.fancylib.gui.inventoryClick.impl.ChangePageInventoryItemClick;
 import de.oliver.fancylib.itemClick.PlayerInteractListener;
-import de.oliver.fancylib.sentry.SentryLoader;
 import de.oliver.fancylib.serverSoftware.ServerSoftware;
 import de.oliver.fancylib.serverSoftware.schedulers.BukkitScheduler;
 import de.oliver.fancylib.serverSoftware.schedulers.FancyScheduler;
