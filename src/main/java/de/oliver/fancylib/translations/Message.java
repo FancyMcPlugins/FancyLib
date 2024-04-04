@@ -14,11 +14,11 @@ public class Message {
         this.config = config;
         this.message = message;
 
-        replace("primaryColor", config.primaryColor());
-        replace("secondaryColor", config.secondaryColor());
-        replace("successColor", config.successColor());
-        replace("warningColor", config.warningColor());
-        replace("errorColor", config.errorColor());
+        replace("primaryColor", "<color:" + config.primaryColor() + ">");
+        replace("secondaryColor", "<color:" + config.secondaryColor() + ">");
+        replace("successColor", "<color:" + config.successColor() + ">");
+        replace("warningColor", "<color:" + config.warningColor() + ">");
+        replace("errorColor", "<color:" + config.errorColor() + ">");
     }
 
     public Message replace(String placeholder, String replacement) {
