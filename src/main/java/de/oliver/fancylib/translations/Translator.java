@@ -23,6 +23,10 @@ public class Translator {
     }
 
     public void loadLanguages(String pluginFolderPath) {
+        languages.clear();
+        selectedLanguage = null;
+        fallbackLanguage = null;
+
         File langFolder = new File(pluginFolderPath + "/languages");
         if(!langFolder.exists()) {
             if (!langFolder.mkdirs()) {
@@ -50,10 +54,7 @@ public class Translator {
         }
 
         for (File langFile : langFiles) {
-            Language language = loadLanguageFile(langFile);
-            if (language != null) {
-                languages.add(language);
-            }
+            languages.add(loadLanguageFile(langFile));
         }
 
         fallbackLanguage = languages.stream()
