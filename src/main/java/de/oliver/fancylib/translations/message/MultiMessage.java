@@ -10,15 +10,6 @@ import java.util.List;
 public class MultiMessage extends Message {
 
     private final List<String> messages;
-    private int messagesPerPage = 10;
-
-    public MultiMessage(TextConfig config, List<String> messages, int messagesPerPage) {
-        super(config);
-        this.messages = new ArrayList<>(messages);
-        this.messagesPerPage = messagesPerPage;
-
-        applyColorPlaceholders();
-    }
 
     public MultiMessage(TextConfig config, List<String> messages) {
         super(config);
@@ -101,7 +92,7 @@ public class MultiMessage extends Message {
         return messages;
     }
 
-    public MultiMessage page(int page) {
+    public MultiMessage page(int page, int messagesPerPage) {
         List<String> pageMessages = new ArrayList<>();
         int start = (page - 1) * messagesPerPage;
         int end = Math.min(start + messagesPerPage, messages.size());
@@ -113,7 +104,7 @@ public class MultiMessage extends Message {
         return new MultiMessage(config, pageMessages);
     }
 
-    public int getPages() {
+    public int getPages(int messagesPerPage) {
         return (int) Math.ceil((double) messages.size() / messagesPerPage);
     }
 }
