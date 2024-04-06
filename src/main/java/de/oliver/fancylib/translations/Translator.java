@@ -1,5 +1,8 @@
 package de.oliver.fancylib.translations;
 
+import de.oliver.fancylib.translations.message.Message;
+import de.oliver.fancylib.translations.message.MultiMessage;
+import de.oliver.fancylib.translations.message.SimpleMessage;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -28,7 +31,7 @@ public class Translator {
         fallbackLanguage = null;
 
         File langFolder = new File(pluginFolderPath + "/languages");
-        if(!langFolder.exists()) {
+        if (!langFolder.exists()) {
             if (!langFolder.mkdirs()) {
                 throw new RuntimeException("Could not create languages folder");
             }
@@ -78,29 +81,35 @@ public class Translator {
 
 
         ConfigurationSection messages = lang.getConfigurationSection("messages");
-        if(messages == null) {
+        if (messages == null) {
             throw new RuntimeException("Language file " + langFile.getName() + " does not contain a messages section");
         }
 
         for (String key : messages.getKeys(true)) {
-            language.addMessage(key, messages.getString(key));
+            if (messages.isString(key)) {
+                SimpleMessage message = new SimpleMessage(textConfig, messages.getString(key));
+                language.addMessage(key, message);
+                continue;
+            }
+
+            if (messages.isList(key)) {
+                List<String> list = messages.getStringList(key);
+                language.addMessage(key, new MultiMessage(textConfig, list));
+            }
+
         }
 
         return language;
     }
 
-    public String translateRaw(String key) {
-        String message = selectedLanguage.getMessage(key);
+    public Message translate(String key) {
+        Message message = selectedLanguage.getMessage(key);
 
         if (message == null) {
             message = fallbackLanguage.getMessage(key);
         }
 
         return message;
-    }
-
-    public Message translate(String key) {
-        return new Message(textConfig, translateRaw(key));
     }
 
     public List<Language> getLanguages() {

@@ -1,27 +1,23 @@
-package de.oliver.fancylib.translations;
+package de.oliver.fancylib.translations.message;
 
+import de.oliver.fancylib.translations.TextConfig;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Message {
+public class SimpleMessage extends Message {
 
-    private final TextConfig config;
     private String message;
 
-    public Message(TextConfig config, String message) {
-        this.config = config;
+    public SimpleMessage(TextConfig config, String message) {
+        super(config);
         this.message = message;
 
-        replace("primaryColor", "<color:" + config.primaryColor() + ">");
-        replace("secondaryColor", "<color:" + config.secondaryColor() + ">");
-        replace("successColor", "<color:" + config.successColor() + ">");
-        replace("warningColor", "<color:" + config.warningColor() + ">");
-        replace("errorColor", "<color:" + config.errorColor() + ">");
+        applyColorPlaceholders();
     }
 
-    public Message replace(String placeholder, String replacement) {
+    public SimpleMessage replace(String placeholder, String replacement) {
         message = message
                 .replace("{" + placeholder + "}", replacement)
                 .replace("%" + placeholder + "%", replacement);
@@ -29,37 +25,37 @@ public class Message {
         return this;
     }
 
-    public Message withPrefix() {
+    public SimpleMessage withPrefix() {
         message = config.prefix() + message;
         return this;
     }
 
-    public Message primary() {
+    public SimpleMessage primary() {
         message = "<color:" + config.primaryColor() + ">" + message;
         return this;
     }
 
-    public Message secondary() {
+    public SimpleMessage secondary() {
         message = "<color:" + config.secondaryColor() + ">" + message;
         return this;
     }
 
-    public Message success() {
+    public SimpleMessage success() {
         message = "<color:" + config.successColor() + ">" + message;
         return this;
     }
 
-    public Message warning() {
+    public SimpleMessage warning() {
         message = "<color:" + config.warningColor() + ">" + message;
         return this;
     }
 
-    public Message error() {
+    public SimpleMessage error() {
         message = "<color:" + config.errorColor() + ">" + message;
         return this;
     }
 
-    public Message applyCustomPlaceholders() {
+    public SimpleMessage applyCustomPlaceholders() {
         // TODO: add ChatColorHandler support
 
         return this;
@@ -79,5 +75,9 @@ public class Message {
 
     public void actionbar(Player receiver) {
         receiver.sendActionBar(buildComponent());
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
