@@ -109,7 +109,7 @@ public class Translator {
             message = fallbackLanguage.getMessage(key);
         }
 
-        return message;
+        return message.copy();
     }
 
     public List<Language> getLanguages() {

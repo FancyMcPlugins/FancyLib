@@ -17,6 +17,7 @@ public class SimpleMessage extends Message {
         applyColorPlaceholders();
     }
 
+    @Override
     public SimpleMessage replace(String placeholder, String replacement) {
         message = message
                 .replace("{" + placeholder + "}", replacement)
@@ -25,48 +26,61 @@ public class SimpleMessage extends Message {
         return this;
     }
 
+    @Override
     public SimpleMessage withPrefix() {
         message = config.prefix() + message;
         return this;
     }
 
+    @Override
     public SimpleMessage primary() {
         message = "<color:" + config.primaryColor() + ">" + message;
         return this;
     }
 
+    @Override
     public SimpleMessage secondary() {
         message = "<color:" + config.secondaryColor() + ">" + message;
         return this;
     }
 
+    @Override
     public SimpleMessage success() {
         message = "<color:" + config.successColor() + ">" + message;
         return this;
     }
 
+    @Override
     public SimpleMessage warning() {
         message = "<color:" + config.warningColor() + ">" + message;
         return this;
     }
 
+    @Override
     public SimpleMessage error() {
         message = "<color:" + config.errorColor() + ">" + message;
         return this;
     }
 
+    @Override
     public SimpleMessage applyCustomPlaceholders() {
         // TODO: add ChatColorHandler support
 
         return this;
     }
 
-    public String build() {
-        return message;
-    }
-
+    @Override
     public Component buildComponent() {
         return MiniMessage.miniMessage().deserialize(message);
+    }
+
+    @Override
+    public Message copy() {
+        return new SimpleMessage(config, message);
+    }
+
+    public String build() {
+        return message;
     }
 
     public void send(CommandSender receiver) {

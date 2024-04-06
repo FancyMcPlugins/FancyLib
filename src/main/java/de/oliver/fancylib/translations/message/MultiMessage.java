@@ -75,6 +75,11 @@ public class MultiMessage extends Message {
         return MiniMessage.miniMessage().deserialize(joined);
     }
 
+    @Override
+    public Message copy() {
+        return new MultiMessage(config, messages);
+    }
+
     public String build() {
         return String.join("\n", messages);
     }

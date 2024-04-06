@@ -86,6 +86,13 @@ public abstract class Message {
      */
     public abstract Component buildComponent();
 
+    /**
+     * Copies the message
+     *
+     * @return the copied message
+     */
+    public abstract Message copy();
+
     public void send(CommandSender receiver) {
         receiver.sendMessage(buildComponent());
     }
