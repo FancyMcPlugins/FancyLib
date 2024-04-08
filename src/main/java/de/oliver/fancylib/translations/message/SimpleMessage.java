@@ -3,7 +3,6 @@ package de.oliver.fancylib.translations.message;
 import de.oliver.fancylib.translations.TextConfig;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class SimpleMessage extends Message {
@@ -81,10 +80,6 @@ public class SimpleMessage extends Message {
 
     public String build() {
         return message;
-    }
-
-    public void send(CommandSender receiver) {
-        receiver.sendMessage(buildComponent());
     }
 
     public void actionbar(Player receiver) {

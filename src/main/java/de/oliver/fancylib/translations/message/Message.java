@@ -94,10 +94,20 @@ public abstract class Message {
     public abstract Message copy();
 
     public void send(CommandSender receiver) {
-        receiver.sendMessage(buildComponent());
+        Component msg = buildComponent();
+        if (Component.empty().equals(msg)) {
+            return;
+        }
+
+        receiver.sendMessage(msg);
     }
 
     public void actionbar(Player receiver) {
-        receiver.sendActionBar(buildComponent());
+        Component msg = buildComponent();
+        if (Component.empty().equals(msg)) {
+            return;
+        }
+
+        receiver.sendActionBar(msg);
     }
 }
