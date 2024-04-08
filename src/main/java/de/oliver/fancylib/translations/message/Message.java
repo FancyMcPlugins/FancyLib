@@ -15,8 +15,9 @@ public abstract class Message {
         this.config = config;
     }
 
-    public void addTagResolver(TagResolver resolver) {
+    public Message addTagResolver(TagResolver resolver) {
         tagResolverBuilder = tagResolverBuilder.resolver(resolver);
+        return this;
     }
 
     protected void applyColorPlaceholders() {
