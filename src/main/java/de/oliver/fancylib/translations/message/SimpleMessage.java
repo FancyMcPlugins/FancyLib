@@ -70,7 +70,7 @@ public class SimpleMessage extends Message {
 
     @Override
     public Component buildComponent() {
-        return MiniMessage.miniMessage().deserialize(message);
+        return MiniMessage.miniMessage().deserialize(message, tagResolverBuilder.build());
     }
 
     @Override

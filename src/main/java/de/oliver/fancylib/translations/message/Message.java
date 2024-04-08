@@ -2,15 +2,21 @@ package de.oliver.fancylib.translations.message;
 
 import de.oliver.fancylib.translations.TextConfig;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public abstract class Message {
 
     protected final TextConfig config;
+    protected TagResolver.Builder tagResolverBuilder = TagResolver.builder();
 
     public Message(TextConfig config) {
         this.config = config;
+    }
+
+    public void addTagResolver(TagResolver resolver) {
+        tagResolverBuilder = tagResolverBuilder.resolver(resolver);
     }
 
     protected void applyColorPlaceholders() {

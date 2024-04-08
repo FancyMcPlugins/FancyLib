@@ -72,7 +72,7 @@ public class MultiMessage extends Message {
     @Override
     public Component buildComponent() {
         String joined = String.join("\n", messages);
-        return MiniMessage.miniMessage().deserialize(joined);
+        return MiniMessage.miniMessage().deserialize(joined, tagResolverBuilder.build());
     }
 
     @Override
