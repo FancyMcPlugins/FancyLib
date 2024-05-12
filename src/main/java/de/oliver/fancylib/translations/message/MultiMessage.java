@@ -28,6 +28,11 @@ public class MultiMessage extends Message {
     }
 
     @Override
+    public Message replaceStripped(String placeholder, String replacement) {
+        return replace(placeholder, MiniMessage.miniMessage().stripTags(replacement, tagResolverBuilder.build()));
+    }
+
+    @Override
     public Message withPrefix() {
         messages.replaceAll(s -> config.prefix() + s);
         return this;

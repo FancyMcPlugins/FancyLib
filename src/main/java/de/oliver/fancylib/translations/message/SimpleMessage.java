@@ -26,6 +26,11 @@ public class SimpleMessage extends Message {
     }
 
     @Override
+    public Message replaceStripped(String placeholder, String replacement) {
+        return replace(placeholder, MiniMessage.miniMessage().stripTags(replacement, tagResolverBuilder.build()));
+    }
+
+    @Override
     public SimpleMessage withPrefix() {
         message = config.prefix() + message;
         return this;
