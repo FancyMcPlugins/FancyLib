@@ -38,6 +38,15 @@ public abstract class Message {
     public abstract Message replace(String placeholder, String replacement);
 
     /**
+     * Replaces a placeholder in the message, all known tags are stripped from the replacement
+     *
+     * @param placeholder the placeholder to replace
+     * @param replacement the replacement
+     * @return this message
+     */
+    public abstract Message replaceStripped(String placeholder, String replacement);
+
+    /**
      * Adds the prefix to the message
      *
      * @return this message
