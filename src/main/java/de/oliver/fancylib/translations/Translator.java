@@ -45,6 +45,7 @@ public class Translator {
                 throw new RuntimeException("Could not find default language file");
             }
 
+            // only copy if hash is different
             Files.copy(enDefault, enFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException("Could not copy default language file");
