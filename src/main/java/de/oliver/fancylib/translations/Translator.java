@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,17 +39,15 @@ public class Translator {
         }
 
         File enFile = new File(langFolder, "en.yml");
-        if (!enFile.exists()) {
-            try {
-                InputStream enDefault = getClass().getResourceAsStream("/languages/en.yml");
-                if (enDefault == null) {
-                    throw new RuntimeException("Could not find default language file");
-                }
-
-                Files.copy(enDefault, enFile.toPath());
-            } catch (IOException e) {
-                throw new RuntimeException("Could not copy default language file");
+        try {
+            InputStream enDefault = getClass().getResourceAsStream("/languages/en.yml");
+            if (enDefault == null) {
+                throw new RuntimeException("Could not find default language file");
             }
+
+            Files.copy(enDefault, enFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not copy default language file");
         }
 
         File[] langFiles = langFolder.listFiles();
