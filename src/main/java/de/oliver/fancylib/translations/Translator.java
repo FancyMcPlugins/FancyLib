@@ -108,6 +108,10 @@ public class Translator {
             message = fallbackLanguage.getMessage(key);
         }
 
+        if (message == null) {
+            return new SimpleMessage(textConfig, "<red>Missing translation for key <i>" + key);
+        }
+
         return message.copy();
     }
 
