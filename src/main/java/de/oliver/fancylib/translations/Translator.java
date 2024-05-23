@@ -38,15 +38,15 @@ public class Translator {
             }
         }
 
-        File enFile = new File(langFolder, "en.yml");
+        File defaultFile = new File(langFolder, "default.yml");
         try {
-            InputStream enDefault = getClass().getResourceAsStream("/languages/en.yml");
-            if (enDefault == null) {
+            InputStream defaultStream = getClass().getResourceAsStream("/languages/default.yml");
+            if (defaultStream == null) {
                 throw new RuntimeException("Could not find default language file");
             }
 
             // only copy if hash is different
-            Files.copy(enDefault, enFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(defaultStream, defaultFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException("Could not copy default language file");
         }
@@ -61,7 +61,7 @@ public class Translator {
         }
 
         fallbackLanguage = languages.stream()
-                .filter(language -> language.getLanguageCode().equals("en"))
+                .filter(language -> language.getLanguageCode().equals("default"))
                 .findFirst()
                 .orElse(null);
 
