@@ -40,7 +40,7 @@ public class FileUtils {
         if (url == null) {
             return;
         }
-        File file = new File(plugin.getDataFolder() + "/" + name);
+        File file = new File(plugin.getDataFolder() + File.separator + name);
         if (file.exists()) return;
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();

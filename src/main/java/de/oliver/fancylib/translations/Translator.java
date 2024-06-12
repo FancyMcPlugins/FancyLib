@@ -31,7 +31,7 @@ public class Translator {
         selectedLanguage = null;
         fallbackLanguage = null;
 
-        File langFolder = new File(pluginFolderPath + "/languages");
+        File langFolder = new File(pluginFolderPath + File.separator + "languages");
         if (!langFolder.exists()) {
             if (!langFolder.mkdirs()) {
                 throw new RuntimeException("Could not create languages folder");

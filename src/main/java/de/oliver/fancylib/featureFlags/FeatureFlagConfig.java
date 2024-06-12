@@ -16,11 +16,11 @@ public class FeatureFlagConfig {
 
     public FeatureFlagConfig(Plugin plugin) {
         this.plugin = plugin;
-        this.configFile = new File("plugins/" + plugin.getName() + "/featureFlags.yml");
+        this.configFile = new File("plugins" + File.separator + plugin.getName() + File.separator + "featureFlags.yml");
         this.featureFlags = new ArrayList<>();
     }
 
-    public void load(){
+    public void load() {
         if (!configFile.exists()) {
             try {
                 configFile.createNewFile();
@@ -34,8 +34,8 @@ public class FeatureFlagConfig {
         for (FeatureFlag featureFlag : featureFlags) {
             config.setInlineComments("feature-flags." + featureFlag.getName(), List.of(featureFlag.getDescription()));
 
-            if(config.isSet("feature-flags." + featureFlag.getName())){
-               continue;
+            if (config.isSet("feature-flags." + featureFlag.getName())) {
+                continue;
             }
 
             config.set("feature-flags." + featureFlag.getName(), false);
@@ -44,7 +44,7 @@ public class FeatureFlagConfig {
         for (String flagName : config.getConfigurationSection("feature-flags").getKeys(false)) {
             boolean enabled = config.getBoolean("feature-flags." + flagName, false);
             FeatureFlag flag = getFeatureFlag(flagName);
-            if(flag == null){
+            if (flag == null) {
                 flag = new FeatureFlag(flagName, "", false);
                 featureFlags.add(flag);
             }
@@ -59,9 +59,9 @@ public class FeatureFlagConfig {
         }
     }
 
-    public FeatureFlag getFeatureFlag(String name){
+    public FeatureFlag getFeatureFlag(String name) {
         for (FeatureFlag featureFlag : featureFlags) {
-            if(featureFlag.getName().equalsIgnoreCase(name.toLowerCase())){
+            if (featureFlag.getName().equalsIgnoreCase(name.toLowerCase())) {
                 return featureFlag;
             }
         }
@@ -69,8 +69,8 @@ public class FeatureFlagConfig {
         return null;
     }
 
-    public void addFeatureFlag(FeatureFlag featureFlag){
-        if(!featureFlags.contains(featureFlag)){
+    public void addFeatureFlag(FeatureFlag featureFlag) {
+        if (!featureFlags.contains(featureFlag)) {
             featureFlags.add(featureFlag);
         }
     }

@@ -22,7 +22,7 @@ public class LanguageConfig {
     @Deprecated
     public LanguageConfig(Plugin plugin) {
         this.plugin = plugin;
-        this.configFile = new File("plugins/" + plugin.getName() + "/lang.yml");
+        this.configFile = new File("plugins" + File.separator + plugin.getName() + File.separator + "lang.yml");
         this.lang = new HashMap<>();
         this.defaultLang = new HashMap<>();
     }
