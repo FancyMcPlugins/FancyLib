@@ -23,6 +23,7 @@ public class FeatureFlagConfig {
     public void load() {
         if (!configFile.exists()) {
             try {
+                new File(configFile.getParent()).mkdirs();
                 configFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
