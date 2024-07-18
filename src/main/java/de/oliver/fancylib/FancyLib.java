@@ -33,13 +33,18 @@ public class FancyLib {
             scheduler = ServerSoftware.isFolia()
                     ? new FoliaScheduler(plugin)
                     : new BukkitScheduler(plugin);
-
-            CancelInventoryItemClick.INSTANCE.register();
-            ChangePageInventoryItemClick.INSTANCE.register();
-
-            Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), plugin);
-            Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), plugin);
         }
+    }
+
+    /**
+     * Registers the listeners for the inventory click and player interact events.
+     */
+    public static void registerListeners() {
+        CancelInventoryItemClick.INSTANCE.register();
+        ChangePageInventoryItemClick.INSTANCE.register();
+        
+        Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), plugin);
+        Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), plugin);
     }
 
     @ApiStatus.Internal
