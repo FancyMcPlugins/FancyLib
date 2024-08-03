@@ -1,5 +1,6 @@
 package de.oliver.fancylib;
 
+import de.oliver.fancylib.checksumChecker.ChecksumFetcher;
 import de.oliver.fancylib.gui.inventoryClick.InventoryClickListener;
 import de.oliver.fancylib.gui.inventoryClick.impl.CancelInventoryItemClick;
 import de.oliver.fancylib.gui.inventoryClick.impl.ChangePageInventoryItemClick;
@@ -14,6 +15,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.ApiStatus;
 
+import java.io.File;
+
 public class FancyLib {
 
     public static final ComparableVersion VERSION = new ComparableVersion("1.0.3");
@@ -25,15 +28,50 @@ public class FancyLib {
         return plugin;
     }
 
-    public static void setPlugin(JavaPlugin plugin) {
-        if (FancyLib.plugin == null) {
-            FancyLib.plugin = plugin;
-
-
-            scheduler = ServerSoftware.isFolia()
-                    ? new FoliaScheduler(plugin)
-                    : new BukkitScheduler(plugin);
+    /**
+     * @param pluginJarFile you can get this by calling JavaPlugin#getJarFile
+     */
+    public static void setPlugin(JavaPlugin plugin, File pluginJarFile) {
+        if (FancyLib.plugin != null) {
+            return;
         }
+
+        String actualChecksum = ChecksumFetcher.getChecksum(plugin.getName(), plugin.getDescription().getVersion());
+//        String fileChecksum = FileUtils.getSHA256Checksum(FileUtils.findFirstFileByName(new File("plugins"), plugin.getName()));
+        String fileChecksum = FileUtils.getSHA256Checksum(pluginJarFile);
+
+        if (!actualChecksum.equals("N/A") && !fileChecksum.equals("N/A")) {
+            if (!actualChecksum.equals(fileChecksum)) {
+                plugin.getLogger().warning("""
+                        ----------------------------------------------------------------
+                        [!]
+                        [!]
+                        [!]
+                        [!]
+                        [!]
+                        [!]
+                        [!]
+                        [!] This plugin has been modified and is not allowed to run!
+                        [!] Please download the plugin from the official source!
+                        [!] This jar might be infected with malware!
+                        [!]
+                        [!]
+                        [!]
+                        [!]
+                        [!]
+                        [!]
+                        [!]
+                        ----------------------------------------------------------------
+                        """);
+                Bukkit.getPluginManager().disablePlugin(plugin);
+                return;
+            }
+        }
+
+        FancyLib.plugin = plugin;
+        scheduler = ServerSoftware.isFolia()
+                ? new FoliaScheduler(plugin)
+                : new BukkitScheduler(plugin);
     }
 
     /**
@@ -42,7 +80,7 @@ public class FancyLib {
     public static void registerListeners() {
         CancelInventoryItemClick.INSTANCE.register();
         ChangePageInventoryItemClick.INSTANCE.register();
-        
+
         Bukkit.getPluginManager().registerEvents(new InventoryClickListener(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerInteractListener(), plugin);
     }
