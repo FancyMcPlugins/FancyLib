@@ -47,13 +47,15 @@ public class FancyLib {
                         [!]
                         [!]
                         [!]
+                        [!] Potential security risk detected!!
                         [!]
                         [!]
                         [!]
-                        [!]
-                        [!] This plugin has been modified and is not allowed to run!
+                        [!] The checksum of the plugin jar does not match the official checksum!
+                        [!] This version might be modified and could contain maleware!
                         [!] Please download the plugin from the official source!
-                        [!] This jar might be infected with malware!
+                        [!] Official checksum: %actualChecksum%
+                        [!] This file's checksum: %fileChecksum%
                         [!]
                         [!]
                         [!]
@@ -62,7 +64,10 @@ public class FancyLib {
                         [!]
                         [!]
                         ----------------------------------------------------------------
-                        """);
+                        """
+                        .replace("%actualChecksum%", actualChecksum)
+                        .replace("%fileChecksum%", fileChecksum)
+                );
                 Bukkit.getPluginManager().disablePlugin(plugin);
                 return;
             }
