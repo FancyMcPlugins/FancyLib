@@ -36,9 +36,15 @@ public class FancyLib {
             return;
         }
 
+        FancyLib.plugin = plugin;
+        scheduler = ServerSoftware.isFolia()
+                ? new FoliaScheduler(plugin)
+                : new BukkitScheduler(plugin);
+    }
+
+    private static void checkChecksums() {
         String actualChecksum = ChecksumFetcher.getChecksum(plugin.getName(), plugin.getDescription().getVersion());
-//        String fileChecksum = FileUtils.getSHA256Checksum(FileUtils.findFirstFileByName(new File("plugins"), plugin.getName()));
-        String fileChecksum = FileUtils.getSHA256Checksum(pluginJarFile);
+        String fileChecksum = FileUtils.getSHA256Checksum(FileUtils.findFirstFileByName(new File("plugins"), plugin.getName()));
 
         if (!actualChecksum.equals("N/A") && !fileChecksum.equals("N/A")) {
             if (!actualChecksum.equals(fileChecksum)) {
@@ -69,14 +75,8 @@ public class FancyLib {
                         .replace("%fileChecksum%", fileChecksum)
                 );
                 Bukkit.getPluginManager().disablePlugin(plugin);
-                return;
             }
         }
-
-        FancyLib.plugin = plugin;
-        scheduler = ServerSoftware.isFolia()
-                ? new FoliaScheduler(plugin)
-                : new BukkitScheduler(plugin);
     }
 
     /**
