@@ -80,7 +80,7 @@ public class JDB {
      * @throws IOException if an I/O error occurs during file reading
      */
     public <T> List<T> getAll(@NotNull String path, @NotNull Class<T> clazz) throws IOException {
-        File directory = new File(baseDirectory, basePath + path);
+        File directory = new File(baseDirectory, path);
         if (!directory.exists()) {
             return new ArrayList<>();
         }
@@ -132,6 +132,6 @@ public class JDB {
      * @return the full file path
      */
     private String createFilePath(@NotNull String path) {
-        return basePath + path + FILE_EXTENSION;
+        return path + FILE_EXTENSION;
     }
 }
