@@ -16,14 +16,14 @@ import java.util.Map;
  * The JDB class provides a simple JSON document-based storage system in a specified directory.
  */
 public class JDB {
-
     private final static Gson GSON = new GsonBuilder()
             .serializeNulls()
             .setPrettyPrinting()
             .create();
 
+    private static final String FILE_EXTENSION = ".json";
     private final @NotNull String basePath;
-    private final @NotNull File baseFolder;
+    private final @NotNull File baseDirectory;
 
     /**
      * Constructs a new JDB instance with the specified base path.
@@ -32,7 +32,7 @@ public class JDB {
      */
     public JDB(@NotNull String basePath) {
         this.basePath = basePath;
-        this.baseFolder = new File(basePath);
+        this.baseDirectory = new File(basePath);
     }
 
     /**
@@ -45,13 +45,11 @@ public class JDB {
      * @throws IOException if an I/O error occurs during file reading
      */
     public <T> T get(@NotNull String path, @NotNull Class<T> clazz) throws IOException {
-        File file = new File(baseFolder, basePath + path + ".json");
-        if (!file.exists()) {
+        File documentFile = new File(baseDirectory, createFilePath(path));
+        if (!documentFile.exists()) {
             return null;
         }
-
-        BufferedReader bufferedReader = Files.newBufferedReader(file.toPath());
-
+        BufferedReader bufferedReader = Files.newBufferedReader(documentFile.toPath());
         return GSON.fromJson(bufferedReader, clazz);
     }
 
@@ -63,14 +61,12 @@ public class JDB {
      * @throws IOException if an I/O error occurs during file reading
      */
     public JDocument getDocument(@NotNull String path) throws IOException {
-        File file = new File(baseFolder, basePath + path + ".json");
-        if (!file.exists()) {
+        File documentFile = new File(baseDirectory, createFilePath(path));
+        if (!documentFile.exists()) {
             return null;
         }
-
-        BufferedReader bufferedReader = Files.newBufferedReader(file.toPath());
-
-        Map<String, Object> data = (Map<String, Object>) GSON.fromJson(bufferedReader, JDocument.class);
+        BufferedReader bufferedReader = Files.newBufferedReader(documentFile.toPath());
+        Map<String, Object> data = (Map<String, Object>) GSON.fromJson(bufferedReader, Map.class);
         return new JDocument(data);
     }
 
@@ -84,21 +80,18 @@ public class JDB {
      * @throws IOException if an I/O error occurs during file reading
      */
     public <T> List<T> getAll(@NotNull String path, @NotNull Class<T> clazz) throws IOException {
-        File folder = new File(baseFolder, basePath + path);
-        if (!folder.exists()) {
+        File directory = new File(baseDirectory, basePath + path);
+        if (!directory.exists()) {
             return new ArrayList<>();
         }
-
-        File[] files = folder.listFiles();
+        File[] files = directory.listFiles();
         if (files == null) {
             return new ArrayList<>();
         }
-
         List<T> documents = new ArrayList<>(files.length);
         for (File file : files) {
-            documents.add(get(path + "/" + file.getName().replace(".json", ""), clazz));
+            documents.add(get(path + "/" + file.getName().replace(FILE_EXTENSION, ""), clazz));
         }
-
         return documents;
     }
 
@@ -111,16 +104,13 @@ public class JDB {
      * @throws IOException if an I/O error occurs during file writing
      */
     public <T> void set(@NotNull String path, @NotNull T value) throws IOException {
-        File file = new File(baseFolder, basePath + path + ".json");
-
-        if (!file.exists()) {
-            file.getParentFile().mkdirs();
-            file.createNewFile();
+        File documentFile = new File(baseDirectory, createFilePath(path));
+        if (!documentFile.exists()) {
+            documentFile.getParentFile().mkdirs();
+            documentFile.createNewFile();
         }
-
         String json = GSON.toJson(value);
-
-        Files.write(file.toPath(), json.getBytes());
+        Files.write(documentFile.toPath(), json.getBytes());
     }
 
     /**
@@ -129,9 +119,19 @@ public class JDB {
      * @param path the relative path (excluding .json extension) where the document(s) are located
      */
     public void delete(@NotNull String path) {
-        File file = new File(baseFolder, basePath + path + ".json");
-        if (file.exists()) {
-            file.delete();
+        File documentFile = new File(baseDirectory, createFilePath(path));
+        if (documentFile.exists()) {
+            documentFile.delete();
         }
+    }
+
+    /**
+     * Creates the file path by appending the base path, provided path, and the file extension.
+     *
+     * @param path the relative path (excluding .json extension)
+     * @return the full file path
+     */
+    private String createFilePath(@NotNull String path) {
+        return basePath + path + FILE_EXTENSION;
     }
 }

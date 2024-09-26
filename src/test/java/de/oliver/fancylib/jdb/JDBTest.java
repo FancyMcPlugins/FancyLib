@@ -201,7 +201,7 @@ public class JDBTest {
         String basePath = "./test_files/";
         JDB jdb = new JDB(basePath);
         String path = "existing_file";
-        String value = "Test message";
+        TestObject value = new TestObject("Test message");
         jdb.set(path, value);
 
         // Act
@@ -209,7 +209,7 @@ public class JDBTest {
 
         // Assert
         assertNotNull(document);
-        assertEquals(value, document.getString("message"));
+        assertEquals(value.message(), document.getString("message"));
     }
 
     // Testing the getDocument method when the file does not exist
@@ -225,5 +225,8 @@ public class JDBTest {
 
         // Assert
         assertNull(document);
+    }
+
+    record TestObject(String message) {
     }
 }
