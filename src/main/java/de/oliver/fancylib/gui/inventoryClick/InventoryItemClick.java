@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface InventoryItemClick {
 
-    NamespacedKey ON_CLICK_KEY = new NamespacedKey(FancyLib.getPlugin(), "onclick");
+    NamespacedKey ON_CLICK_KEY = new NamespacedKey(FancyLib.getInstance().getPlugin(), "onclick");
 
     InventoryItemClick EMPTY = new InventoryItemClick() {
         @Override

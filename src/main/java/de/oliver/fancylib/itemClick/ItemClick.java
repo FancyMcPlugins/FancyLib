@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public interface ItemClick {
-    NamespacedKey ON_CLICK_KEY = new NamespacedKey(FancyLib.getPlugin(), "oninteract");
+    NamespacedKey ON_CLICK_KEY = new NamespacedKey(FancyLib.getInstance().getPlugin(), "oninteract");
 
     ItemClick EMPTY = new ItemClick() {
         @Override

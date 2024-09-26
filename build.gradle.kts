@@ -15,13 +15,15 @@ java {
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.fancyplugins.de/releases")
 }
 
 dependencies {
     compileOnly("dev.folia:folia-api:1.20.4-R0.1-SNAPSHOT")
+    compileOnly("de.oliver.FancyAnalytics:logger:0.0.5")
 
     // database drivers
-    compileOnly("org.xerial:sqlite-jdbc:3.42.0.1")
+    compileOnly("org.xerial:sqlite-jdbc:3.46.0.0")
     compileOnly("mysql:mysql-connector-java:8.0.33")
 }
 

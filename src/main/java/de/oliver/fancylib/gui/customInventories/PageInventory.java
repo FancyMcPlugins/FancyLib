@@ -12,7 +12,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 public interface PageInventory {
 
-    NamespacedKey PAGE_KEY = new NamespacedKey(FancyLib.getPlugin(), "page");
+    NamespacedKey PAGE_KEY = new NamespacedKey(FancyLib.getInstance().getPlugin(), "page");
 
     static ItemStack previousPage(int currentPage) {
         ItemStack previousPage = new ItemStack(Material.ARROW);
