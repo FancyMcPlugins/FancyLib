@@ -25,6 +25,11 @@ dependencies {
     // database drivers
     compileOnly("org.xerial:sqlite-jdbc:3.46.0.0")
     compileOnly("mysql:mysql-connector-java:8.0.33")
+
+    // testing
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.3")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.1")
+    testImplementation("com.google.code.gson:gson:2.11.0")
 }
 
 tasks {
@@ -78,5 +83,9 @@ tasks {
     }
     processResources {
         filteringCharset = Charsets.UTF_8.name() // We want UTF-8 for everything
+    }
+
+    test {
+        useJUnitPlatform()
     }
 }
