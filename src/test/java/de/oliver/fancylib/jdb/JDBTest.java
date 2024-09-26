@@ -192,4 +192,38 @@ public class JDBTest {
         File file = new File(basePath + path + ".json");
         assertFalse(file.exists());
     }
+
+    // The getDocument method in the JDB class is supposed to retrieve and deserialize a JSON document(but encapsulated in a JDocument) from a given path in the file system.
+    // Testing getDocument method when the file exists
+    @Test
+    public void testGetDocumentWhenFileExists() throws IOException {
+        // Prepare
+        String basePath = "./test_files/";
+        JDB jdb = new JDB(basePath);
+        String path = "existing_file";
+        String value = "Test message";
+        jdb.set(path, value);
+
+        // Act
+        JDocument document = jdb.getDocument(path);
+
+        // Assert
+        assertNotNull(document);
+        assertEquals(value, document.getString("message"));
+    }
+
+    // Testing the getDocument method when the file does not exist
+    @Test
+    public void testGetDocumentWhenFileDoesNotExist() throws IOException {
+        // Prepare
+        String basePath = "./test_files/";
+        JDB jdb = new JDB(basePath);
+        String path = "non_existing_file";
+
+        // Act
+        JDocument document = jdb.getDocument(path);
+
+        // Assert
+        assertNull(document);
+    }
 }

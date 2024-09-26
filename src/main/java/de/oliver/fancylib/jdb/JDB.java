@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The JDB class provides a simple JSON document-based storage system in a specified directory.
@@ -52,6 +53,25 @@ public class JDB {
         BufferedReader bufferedReader = Files.newBufferedReader(file.toPath());
 
         return GSON.fromJson(bufferedReader, clazz);
+    }
+
+    /**
+     * Retrieves a document from the specified path.
+     *
+     * @param path the relative path (excluding .json extension) where the document is located
+     * @return a JDocument containing the deserialized data or null if the file does not exist
+     * @throws IOException if an I/O error occurs during file reading
+     */
+    public JDocument getDocument(@NotNull String path) throws IOException {
+        File file = new File(baseFolder, basePath + path + ".json");
+        if (!file.exists()) {
+            return null;
+        }
+
+        BufferedReader bufferedReader = Files.newBufferedReader(file.toPath());
+
+        Map<String, Object> data = (Map<String, Object>) GSON.fromJson(bufferedReader, JDocument.class);
+        return new JDocument(data);
     }
 
     /**
