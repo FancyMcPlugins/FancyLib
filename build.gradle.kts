@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.oliver"
-version = "1.0.31"
+version = "32"
 description = "Library for all Fancy plugins"
 
 java {
