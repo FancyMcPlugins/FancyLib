@@ -178,7 +178,7 @@ public class Expectable<T> {
      * @param expected the value that is expected to be contained within the actual value
      * @throws AssertionError if the expected value is not contained within the actual value
      */
-    public void toContain(T expected) {
+    public void toContain(Object expected) {
         if (t instanceof String) {
             if (!((String) t).contains((String) expected)) {
                 throw new AssertionError("Expected " + expected + " to be contained in " + t);
