@@ -156,7 +156,7 @@ public class Expectable<T> {
 
     /**
      * Asserts that the actual value is an instance of the expected class.
-     * This method checks whether the value held in the field 't' is an instance of the provided Class<?>.
+     * This method checks whether the value held in the field 't' is an instance of the provided Class.
      *
      * @param expected the Class object that the actual value is expected to be an instance of
      * @throws AssertionError if the actual value is not an instance of the expected class
