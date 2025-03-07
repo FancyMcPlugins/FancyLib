@@ -116,9 +116,15 @@ public class JDB {
     /**
      * Deletes the document(s) at the specified path.
      *
-     * @param path the relative path (excluding .json extension) where the document(s) are located
+     * @param path the relative path (excluding .json extension) of the document(s) to be deleted
      */
     public void delete(@NotNull String path) {
+        File file = new File(baseDirectory, path);
+        if (file.isDirectory()) {
+            deleteDirectory(file);
+            return;
+        }
+
         File documentFile = new File(baseDirectory, createFilePath(path));
         if (documentFile.exists()) {
             documentFile.delete();
@@ -133,5 +139,19 @@ public class JDB {
      */
     private String createFilePath(@NotNull String path) {
         return path + FILE_EXTENSION;
+    }
+
+    private void deleteDirectory(File directory) {
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                if (f.isDirectory()) {
+                    deleteDirectory(f);
+                } else {
+                    f.delete();
+                }
+            }
+        }
+        directory.delete();
     }
 }
